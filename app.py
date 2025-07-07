@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = 'clave_secreta'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///habitos.db'
 db = SQLAlchemy(app)
