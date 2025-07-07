@@ -11,26 +11,41 @@
     <h1 class="titulo">Hábitos sostenibles</h1>
     <p class="descripcion">Sistema de seguimiento de hábitos sostenibles personalizados.</p>
   </header>
+
   <main class="fade-in">
+    <!-- Añadir hábito -->
     <section>
       <form method="POST" action="/agregar">
         <input type="text" name="nuevo_habito" placeholder="Nuevo hábito..." required>
         <button type="submit" class="btn">Añadir hábito</button>
       </form>
+    </section>
+
+    <!-- Lista de hábitos y registrar -->
+    <section>
       <form method="POST" action="/registrar">
         {% for habito in lista %}
         <div class="check">
-            <input type="checkbox" name="habito_{{ habito.id }}" id="habito_{{ habito.id }}">
-            <label for="habito_{{ habito.id }}">{{ habito.nombre }}</label>
-            <button type="submit" form="deleteForm{{ habito.id }}">🗑️</button>
+          <input type="checkbox" name="habito_{{ habito.id }}" id="habito_{{ habito.id }}">
+          <label for="habito_{{ habito.id }}">{{ habito.nombre }}</label>
         </div>
-
-        <form id="deleteForm{{ habito.id }}" method="POST" action="/eliminar/{{ habito.id }}"></form>
         {% endfor %}
         <button type="submit" class="btn">Registrar</button>
       </form>
-
     </section>
+
+    <!-- Botones de eliminar -->
+    <section>
+      <h3>Eliminar hábitos</h3>
+      {% for habito in lista %}
+      <form method="POST" action="/eliminar/{{ habito.id }}" style="display:inline-block; margin: 5px;">
+        <span>{{ habito.nombre }}</span>
+        <button type="submit" class="btn eliminar">🗑️</button>
+      </form>
+      {% endfor %}
+    </section>
+
+    <!-- Historial -->
     <section>
       <h2>Historial</h2>
       <table>
@@ -49,6 +64,7 @@
         </tbody>
       </table>
     </section>
+
     <nav>
       <a href="/" class="btn">Inicio</a>
       <a href="/aplicaciones" class="btn">Aplicación</a>

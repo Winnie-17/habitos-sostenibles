@@ -84,3 +84,30 @@ nav a {
   .titulo { font-size: 2rem; }
   input[type="text"] { width: 100%; }
 }
+
+/* Botón moderno y uniforme */
+.btn, button {
+  background-color: #00cc66;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+button:hover, .btn:hover {
+  background-color: #00e68a;
+}
+
+/* Botón de eliminar rojo */
+button.eliminar {
+  background-color: #cc0000;
+}
+
+button.eliminar:hover {
+  background-color: #e60000;
+}
