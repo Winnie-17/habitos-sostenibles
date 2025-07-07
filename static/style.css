@@ -1,136 +1,26 @@
+/* Fuentes y colores */
 body {
-  background-color: #121212;
+  background-color: #111;
   color: #f0f0f0;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.titulo {
-  font-family: 'Outfit', sans-serif;
-  font-size: 3rem;
-  text-align: center;
-  margin-top: 30px;
-  color: #00ff99;
-}
-
-.descripcion {
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 10px 20px;
-  color: #ccc;
-}
-
-main {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  animation: fadeInUp 1s ease-out;
-}
-
-form input, form button {
-  padding: 10px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
-}
-
-input[type="text"] {
-  width: 60%;
-}
-
-button {
-  background-color: #00cc66;
-  color: white;
-  cursor: pointer;
-}
-
-button.borrar {
-  background-color: transparent;
-  color: red;
-  font-size: 1.2rem;
-  margin-left: 10px;
-  border: none;
-}
-
-nav {
-  margin-top: 30px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 10px;
-  color: #00ff99;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.check {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.fade-in {
-  animation: fadeInUp 1s ease;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-  .titulo { font-size: 2rem; }
-  input[type="text"] { width: 100%; }
-}
-
-/* Botón moderno y uniforme */
-.btn, button {
-  background-color: #00cc66;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-}
-
-button:hover, .btn:hover {
-  background-color: #00e68a;
-}
-
-/* Botón de eliminar rojo */
-button.eliminar {
-  background-color: #cc0000;
-}
-
-button.eliminar:hover {
-  background-color: #e60000;
-}
-
-/* GENERAL */
-body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #111;
-  color: #f0f0f0;
 }
 
 /* Encabezados */
-h1 {
+.titulo, h1 {
+  font-family: 'Outfit', sans-serif;
   font-size: 2.5rem;
   text-align: center;
-  margin: 1rem 0;
+  margin-top: 2rem;
+  color: #00ff99;
 }
 
-p {
+.descripcion, p {
   text-align: center;
-  padding: 0 1rem;
+  font-size: 1.1rem;
+  margin: 10px 20px;
+  color: #ccc;
 }
 
 /* Contenedor principal */
@@ -138,35 +28,47 @@ main {
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
+  animation: fadeInUp 1s ease;
 }
 
 /* Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 input[type="text"] {
   width: 100%;
   max-width: 400px;
   padding: 0.8rem;
   margin: 1rem auto;
-  display: block;
+  border-radius: 5px;
+  border: 1px solid #4caf50;
+  background-color: #222;
+  color: #f0f0f0;
   font-size: 1rem;
 }
 
-button.btn {
-  background-color: #28a745;
+/* Botones */
+button, .btn {
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
+  border-radius: 5px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
   margin: 1rem auto;
-  display: block;
   transition: background-color 0.3s ease;
 }
 
-button.btn:hover {
-  background-color: #218838;
+button:hover, .btn:hover {
+  background-color: #388e3c;
 }
 
-/* Tablas */
+/* Historial y tablas */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -180,35 +82,16 @@ th, td {
   text-align: left;
 }
 
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  input[type="text"], button.btn {
-    width: 90%;
-    font-size: 1rem;
-  }
-
-  table, th, td {
-    font-size: 0.8rem;
-  }
-
-  main {
-    padding: 0.5rem;
-  }
-}
-
 /* Navegación */
-.menu {
+.menu, nav {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Permite que se acomode si no hay espacio */
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
 }
 
-.menu a {
+.menu a, nav a {
   background-color: #28a745;
   color: white;
   text-decoration: none;
@@ -218,71 +101,26 @@ th, td {
   transition: background-color 0.3s ease;
 }
 
-.menu a:hover {
+.menu a:hover, nav a:hover {
   background-color: #1e7e34;
 }
 
-/* Diseño responsive para menú en pantallas pequeñas */
+/* Animaciones */
+.fade-in {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
 @media screen and (max-width: 600px) {
-  .menu {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .menu a {
-    width: 80%;
-    text-align: center;
-  }
-}
-
-body {
-  background-color: #111;
-  color: #f0f0f0;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.titulo-principal {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-top: 2rem;
-  color: #4caf50;
-}
-
-.descripcion {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-input[type="text"] {
-  padding: 0.8rem;
-  width: 80%;
-  max-width: 400px;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #4caf50;
-  background-color: #222;
-  color: #f0f0f0;
-}
-
-.btn {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.btn:hover {
-  background-color: #388e3c;
+  .titulo, h1 { font-size: 1.8rem; }
+  input[type="text"], button, .btn { width: 90%; font-size: 1rem; }
+  table, th, td { font-size: 0.8rem; }
+  main { padding: 0.5rem; }
+  .menu { flex-direction: column; align-items: center; }
+  .menu a, nav a { width: 80%; text-align: center; }
 }
