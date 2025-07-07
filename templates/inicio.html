@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ingresar</title>
+  <title>Ingresar - Hábitos Sostenibles</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -12,20 +11,22 @@
   <noscript>
     <style>
       body {
-        font-family: sans-serif;
         background-color: #111;
-        color: white;
+        color: #fff;
+        font-family: sans-serif;
         padding: 2rem;
       }
     </style>
   </noscript>
 </head>
+
 <body>
-  <main class="fade-in">
-    <h1>Bienvenido</h1>
-    <p>Por favor, escribe tu nombre o alias para comenzar.</p>
-    <form method="POST">
-      <input type="text" name="nombre" placeholder="Tu nombre..." required>
+  <main>
+    <h1 class="titulo-principal">Hábitos sostenibles</h1>
+    <p class="descripcion">Sistema de seguimiento de hábitos sostenibles desarrollado como proyecto final de programación.</p>
+
+    <form method="POST" action="{{ url_for('ingresar_usuario') }}">
+      <input type="text" name="nombre_usuario" placeholder="Ingresa tu nombre o alias" required>
       <button type="submit" class="btn">Ingresar</button>
     </form>
   </main>
