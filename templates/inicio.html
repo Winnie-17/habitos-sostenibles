@@ -21,12 +21,11 @@
 </head>
 
 <body>
-  <main>
-    <h1 class="titulo-principal">Hábitos sostenibles</h1>
-    <p class="descripcion">Sistema de seguimiento de hábitos sostenibles desarrollado como proyecto final de programación.</p>
-
-    <form method="POST" action="{{ url_for('ingresar_usuario') }}">
-      <input type="text" name="nombre_usuario" placeholder="Ingresa tu nombre o alias" required>
+  <main class="fade-in">
+    <h1>Bienvenido</h1>
+    <p>Por favor, escribe tu nombre o alias para comenzar.</p>
+    <form method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre..." required>
       <button type="submit" class="btn">Ingresar</button>
     </form>
   </main>
