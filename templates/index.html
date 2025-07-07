@@ -66,11 +66,10 @@
       </table>
     </section>
 
-    <nav>
-      <a href="/" class="btn">Inicio</a>
-      <a href="/aplicaciones" class="btn">Aplicación</a>
-      <a href="/reflexion" class="btn">Reflexión</a>
-      <a href="/codigo" class="btn">Código</a>
+    <nav class="menu">
+      <a href="{{ url_for('aplicaciones') }}">Aplicación</a>
+      <a href="{{ url_for('reflexion') }}">Reflexión</a>
+      <a href="{{ url_for('codigo') }}">Código</a>
     </nav>
   </main>
 </body>

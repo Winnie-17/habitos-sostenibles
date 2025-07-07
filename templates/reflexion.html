@@ -13,11 +13,11 @@
       <img src="{{ url_for('static', filename='herramientas.png') }}" class="imagen-redonda">
       <p>Se emplearon Python, Flask, HTML/CSS, SQLite y SQLAlchemy. Render se usó para el despliegue.</p>
     </section>
-    <nav>
-      <a href="/" class="btn">Inicio</a>
-      <a href="/aplicaciones" class="btn">Aplicación</a>
-      <a href="/reflexion" class="btn">Reflexión</a>
-      <a href="/codigo" class="btn">Código</a>
+    <nav class="menu">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicación</a>
+        <a href="{{ url_for('reflexion') }}">Reflexión</a>
+        <a href="{{ url_for('codigo') }}">Código</a>
     </nav>
   </main>
 </body>

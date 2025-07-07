@@ -198,3 +198,39 @@ th, td {
     padding: 0.5rem;
   }
 }
+
+/* Navegación */
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Permite que se acomode si no hay espacio */
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.menu a {
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: #1e7e34;
+}
+
+/* Diseño responsive para menú en pantallas pequeñas */
+@media screen and (max-width: 600px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu a {
+    width: 80%;
+    text-align: center;
+  }
+}
