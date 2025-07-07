@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Código fuente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        pre {
+            background-color: #102418;
+            padding: 15px;
+            border-left: 5px solid #4caf50;
+            overflow-x: auto;
+            color: #e8f5e9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Fragmento del código</h1>
+    <pre>
+@app.route('/registrar', methods=['POST'])
+def registrar():
+    habitos_marcados = {}
+    habitos = HabitoPersonalizado.query.all()
+    for habito in habitos:
+        marcado = request.form.get(f'habito_{habito.id}') == 'on'
+        habitos_marcados[habito.nombre] = marcado
+    nuevo = Registro(habitos=json.dumps(habitos_marcados))
+    db.session.add(nuevo)
+    db.session.commit()
+    return redirect('/')
+    </pre>
+
+    <div class="navbar mt-4">
+        <a class="btn" href="/">Inicio</a>
+        <a class="btn" href="/aplicaciones">Aplicaciones</a>
+        <a class="btn" href="/reflexion">Reflexión</a>
+    </div>
+</div>
+</body>
+</html>

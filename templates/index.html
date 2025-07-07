@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seguimiento de Hábitos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Agregar nuevo hábito</h1>
+    <form method="POST" action="/agregar">
+        <input type="text" name="nuevo_habito" placeholder="Ejemplo: Usar bicicleta" required>
+        <button type="submit" class="btn">Agregar hábito</button>
+    </form>
+
+    <h2 class="mt-4">Marcar hábitos de hoy</h2>
+    <form method="POST" action="/registrar">
+        {% for h in lista %}
+        <div class="habito-item">
+            <input type="checkbox" id="habito_{{ h.id }}" name="habito_{{ h.id }}">
+            <label for="habito_{{ h.id }}">{{ h.nombre }}</label>
+        </div>
+        {% endfor %}
+        <button class="btn mt-2">Registrar</button>
+    </form>
+
+    <h2 class="mt-4">Eliminar hábitos</h2>
+    <ul>
+        {% for h in lista %}
+        <li>
+            {{ h.nombre }}
+            <form method="POST" action="/eliminar/{{ h.id }}" class="inline-form" onsubmit="return confirm('¿Eliminar este hábito?');">
+                <button class="btn-delete">🗑</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="mt-5">Historial</h2>
+    <table class="table">
+        <thead><tr><th>Fecha</th><th>Hábitos</th></tr></thead>
+        <tbody>
+        {% for r in registros %}
+        <tr>
+            <td>{{ r.fecha.strftime('%d/%m/%Y') }}</td>
+            <td>
+                {% for clave, valor in r.datos.items() %}
+                    {{ clave }}: {{ '✅' if valor else '❌' }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navbar mt-4">
+        <a class="btn" href="/aplicaciones">Aplicaciones</a>
+        <a class="btn" href="/reflexion">Reflexión</a>
+        <a class="btn" href="/codigo">Código</a>
+    </div>
+</div>
+</body>
+</html>

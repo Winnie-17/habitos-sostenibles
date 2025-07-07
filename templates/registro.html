@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marcar hábitos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Marca los hábitos que cumpliste hoy</h1>
+    <form method="POST" action="/registrar">
+        {% for h in lista %}
+        <div>
+            <input type="checkbox" name="habito_{{ h }}">
+            <label>{{ h }}</label>
+            <input type="hidden" name="habito_nombre" value="{{ h }}">
+        </div>
+        {% endfor %}
+        <button class="btn mt-2">Registrar</button>
+    </form>
+</div>
+</body>
+</html>
