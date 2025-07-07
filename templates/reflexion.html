@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Reflexión</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Reflexión</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="container">
-    <h1>Reflexión del Proyecto</h1>
-    <p>Este proyecto me permitió aplicar conocimientos de programación y diseño web al servicio de una causa ambiental...</p>
-
-    <div class="navbar mt-4">
-        <a class="btn" href="/">Inicio</a>
-        <a class="btn" href="/aplicaciones">Aplicaciones</a>
-        <a class="btn" href="/codigo">Código</a>
-    </div>
-</div>
+  <main class="fade-in">
+    <h2>Reflexión</h2>
+    <section class="fade-in">
+      <img src="{{ url_for('static','herramientas.png') }}" class="imagen-redonda">
+      <p>Se emplearon Python, Flask, HTML/CSS, SQLite y SQLAlchemy. Render se usó para el despliegue.</p>
+    </section>
+    <nav>
+      <a href="/" class="btn">Inicio</a>
+      <a href="/aplicaciones" class="btn">Aplicación</a>
+      <a href="/reflexion" class="btn">Reflexión</a>
+      <a href="/codigo" class="btn">Código</a>
+    </nav>
+  </main>
 </body>
 </html>

@@ -9,53 +9,50 @@
 <body>
   <header>
     <h1 class="titulo">Hábitos sostenibles</h1>
-    <p class="descripcion">Este proyecto permite hacer seguimiento personalizado de tus hábitos sostenibles. Puedes registrar, editar y visualizar el avance semanal.</p>
+    <p class="descripcion">Sistema de seguimiento de hábitos sostenibles personalizados.</p>
   </header>
-
   <main class="fade-in">
     <section>
       <form method="POST" action="/agregar">
         <input type="text" name="nuevo_habito" placeholder="Nuevo hábito..." required>
-        <button type="submit">Añadir hábito</button>
+        <button type="submit" class="btn">Añadir hábito</button>
       </form>
-
       <form method="POST" action="/registrar">
         {% for habito in lista %}
-          <div class="check">
-            <input type="checkbox" name="habito_{{ habito.id }}">
-            <label>{{ habito.nombre }}</label>
-            <form method="POST" action="/eliminar/{{ habito.id }}">
-              <button type="submit" class="borrar">🗑️</button>
-            </form>
-          </div>
+        <div class="check">
+          <input type="checkbox" name="habito_{{ habito.id }}" id="habito_{{ habito.id }}">
+          <label for="habito_{{ habito.id }}">{{ habito.nombre }}</label>
+          <form method="POST" action="/eliminar/{{ habito.id }}">
+            <button type="submit">🗑️</button>
+          </form>
+        </div>
         {% endfor %}
-        <button type="submit">Registrar</button>
+        <button type="submit" class="btn">Registrar</button>
       </form>
     </section>
-
     <section>
-      <h2>Historial de registros</h2>
+      <h2>Historial</h2>
       <table>
         <thead><tr><th>Fecha</th><th>Hábitos</th></tr></thead>
         <tbody>
-          {% for registro in registros %}
-            <tr>
-              <td>{{ registro.fecha }}</td>
-              <td>
-                {% for nombre, valor in registro.datos.items() %}
-                  {{ nombre }}: {{ "✅" if valor else "❌" }}<br>
-                {% endfor %}
-              </td>
-            </tr>
+          {% for r in registros %}
+          <tr>
+            <td>{{ r.fecha }}</td>
+            <td>
+              {% for n,v in r.datos.items() %}
+              {{ n }}: {{ '✅' if v else '❌' }}<br>
+              {% endfor %}
+            </td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
     </section>
-
     <nav>
-      <a href="/aplicaciones">Aplicación</a>
-      <a href="/reflexion">Reflexión</a>
-      <a href="/codigo">Código</a>
+      <a href="/" class="btn">Inicio</a>
+      <a href="/aplicaciones" class="btn">Aplicación</a>
+      <a href="/reflexion" class="btn">Reflexión</a>
+      <a href="/codigo" class="btn">Código</a>
     </nav>
   </main>
 </body>

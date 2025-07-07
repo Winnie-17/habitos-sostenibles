@@ -1,17 +1,30 @@
-{% extends "index.html" %}
-{% block content %}
-<h2>Código</h2>
-<div class="fade-in">
-  <p>Este sistema se basa en funciones como <code>def registrar()</code> y estructuras condicionales como <code>if nombre:</code>, fundamentales en la programación en Python.</p>
-  <pre><code>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Código</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="fade-in">
+    <h2>Código</h2>
+    <section class="fade-in">
+      <p>Destacan las funciones <code>def</code> y las condiciones <code>if</code>:</p>
+      <pre><code>
 @app.route("/registrar", methods=["POST"])
 def registrar():
     lista = HabitoPersonalizado.query.all()
     resultados = {h.nombre: f"habito_{h.id}" in request.form for h in lista}
-    nuevo = Registro(datos=json.dumps(resultados), fecha=datetime.today().date())
-    db.session.add(nuevo)
-    db.session.commit()
-    return redirect(url_for('index'))
-  </code></pre>
-</div>
-{% endblock %}
+    if request.form.get("nuevo_habito"):
+        # ...
+      </code></pre>
+    </section>
+    <nav>
+      <a href="/" class="btn">Inicio</a>
+      <a href="/aplicaciones" class="btn">Aplicación</a>
+      <a href="/reflexion" class="btn">Reflexión</a>
+      <a href="/codigo" class="btn">Código</a>
+    </nav>
+  </main>
+</body>
+</html>

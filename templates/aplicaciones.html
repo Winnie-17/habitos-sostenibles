@@ -1,13 +1,27 @@
-{% extends "index.html" %}
-{% block content %}
-<h2>Aplicaciones</h2>
-<div class="fade-in">
-  <h3>📍 Perú - Escuelas Ecoeficientes (MINEDU)</h3>
-  <img src="{{ url_for('static', filename='imagenes/peru.png') }}" class="imagen-redonda">
-  <p>Programa del Ministerio de Educación que promueve el uso eficiente del agua, energía y gestión de residuos en instituciones educativas.</p>
-
-  <h3>🇩🇪 Alemania - Escuelas Verdes</h3>
-  <img src="{{ url_for('static', filename='imagenes/alemania.png') }}" class="imagen-redonda">
-  <p>Iniciativa educativa que integra sostenibilidad en el currículo, diseño ecológico y prácticas verdes diarias.</p>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Aplicación</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="fade-in">
+    <h2>Aplicación</h2>
+    <section class="fade-in">
+      <h3>🇵🇪 Escuelas Ecoeficientes (MINEDU)</h3>
+      <img src="{{ url_for('static','imagen(peru).png') }}" class="imagen-redonda">
+      <p>Descripción del caso MINEDU.</p>
+      <h3>🇩🇪 Escuelas Verdes (Alemania)</h3>
+      <img src="{{ url_for('static','imagen(alemania).png') }}" class="imagen-redonda">
+      <p>Descripción del caso en Alemania.</p>
+    </section>
+    <nav>
+      <a href="/" class="btn">Inicio</a>
+      <a href="/aplicaciones" class="btn">Aplicación</a>
+      <a href="/reflexion" class="btn">Reflexión</a>
+      <a href="/codigo" class="btn">Código</a>
+    </nav>
+  </main>
+</body>
+</html>

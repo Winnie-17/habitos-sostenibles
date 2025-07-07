@@ -17,7 +17,7 @@ class HabitoPersonalizado(db.Model):
 class Registro(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.Date, default=datetime.today)
-    datos = db.Column(db.Text)  # ← ESTA ES LA COLUMNA NUEVA
+    datos = db.Column(db.Text)
 
 # RUTAS
 @app.route("/")
@@ -66,11 +66,6 @@ def reflexion():
 @app.route("/codigo")
 def codigo():
     return render_template("codigo.html")
-
-
-# BLOQUE PARA FORZAR CREACIÓN DE LA BD (usado solo una vez)
-if os.path.exists("habitos.db"):
-    os.remove("habitos.db")  # ⚠️ ELIMINAR esta línea después de la primera subida
 
 with app.app_context():
     db.create_all()
