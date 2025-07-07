@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingresar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="fade-in">
+    <h1>Bienvenido</h1>
+    <p>Por favor, escribe tu nombre o alias para comenzar.</p>
+    <form method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre..." required>
+      <button type="submit" class="btn">Ingresar</button>
+    </form>
+  </main>
+</body>
+</html>
