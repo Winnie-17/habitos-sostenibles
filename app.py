@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///habitos.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# MODELOS
 class HabitoPersonalizado(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
@@ -16,8 +17,9 @@ class HabitoPersonalizado(db.Model):
 class Registro(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.Date, default=datetime.today)
-    datos = db.Column(db.Text)
+    datos = db.Column(db.Text)  # ← ESTA ES LA COLUMNA NUEVA
 
+# RUTAS
 @app.route("/")
 def index():
     lista = HabitoPersonalizado.query.all()
@@ -65,8 +67,15 @@ def reflexion():
 def codigo():
     return render_template("codigo.html")
 
+
+# BLOQUE PARA FORZAR CREACIÓN DE LA BD (usado solo una vez)
+if os.path.exists("habitos.db"):
+    os.remove("habitos.db")  # ⚠️ ELIMINAR esta línea después de la primera subida
+
+with app.app_context():
+    db.create_all()
+
+# EJECUCIÓN
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
