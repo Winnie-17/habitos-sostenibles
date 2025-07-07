@@ -1,74 +1,90 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 import json
 
 app = Flask(__name__)
+
+# Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///habitos.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# MODELOS DE BASE DE DATOS
 class HabitoPersonalizado(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), unique=True)
+    nombre = db.Column(db.String(100), nullable=False)
 
 class Registro(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fecha = db.Column(db.Date, default=datetime.utcnow)
-    habitos = db.Column(db.Text)
+    fecha = db.Column(db.Date, default=datetime.today)
+    datos = db.Column(db.Text)  # Se almacenan como JSON string
 
-@app.route('/')
+# RUTA PRINCIPAL
+@app.route("/")
 def index():
-    lista = HabitoPersonalizado.query.order_by(HabitoPersonalizado.id).all()
-    registros_raw = Registro.query.order_by(Registro.fecha.desc()).all()
-    registros = []
-    for r in registros_raw:
-        datos = json.loads(r.habitos)
-        registros.append({'fecha': r.fecha, 'datos': datos})
-    return render_template('index.html', lista=lista, registros=registros)
+    lista = HabitoPersonalizado.query.all()
+    registros = Registro.query.order_by(Registro.fecha.desc()).all()
 
-@app.route('/agregar', methods=['POST'])
+    # Convertir datos JSON a diccionario para mostrar
+    for r in registros:
+        try:
+            r.datos = json.loads(r.datos)
+        except:
+            r.datos = {}
+
+    return render_template("index.html", lista=lista, registros=registros)
+
+# AGREGAR HÁBITO PERSONALIZADO
+@app.route("/agregar", methods=["POST"])
 def agregar():
-    nombre = request.form.get('nuevo_habito', '').strip()
+    nombre = request.form.get("nuevo_habito")
     if nombre:
-        existente = HabitoPersonalizado.query.filter_by(nombre=nombre).first()
-        if not existente:
-            nuevo = HabitoPersonalizado(nombre=nombre)
-            db.session.add(nuevo)
-            db.session.commit()
-    return redirect('/')
+        nuevo = HabitoPersonalizado(nombre=nombre)
+        db.session.add(nuevo)
+        db.session.commit()
+    return redirect(url_for('index'))
 
-@app.route('/eliminar/<int:id>', methods=['POST'])
+# REGISTRAR HÁBITOS SELECCIONADOS
+@app.route("/registrar", methods=["POST"])
+def registrar():
+    lista = HabitoPersonalizado.query.all()
+    resultados = {}
+
+    for h in lista:
+        key = f"habito_{h.id}"
+        resultados[h.nombre] = key in request.form
+
+    nuevo_registro = Registro(datos=json.dumps(resultados), fecha=datetime.today().date())
+    db.session.add(nuevo_registro)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+# ELIMINAR HÁBITO
+@app.route("/eliminar/<int:id>", methods=["POST"])
 def eliminar(id):
     habito = HabitoPersonalizado.query.get_or_404(id)
     db.session.delete(habito)
     db.session.commit()
-    return redirect('/')
+    return redirect(url_for('index'))
 
-@app.route('/registrar', methods=['POST'])
-def registrar():
-    habitos_marcados = {}
-    habitos = HabitoPersonalizado.query.all()
-    for habito in habitos:
-        marcado = request.form.get(f'habito_{habito.id}') == 'on'
-        habitos_marcados[habito.nombre] = marcado
-    nuevo = Registro(habitos=json.dumps(habitos_marcados))
-    db.session.add(nuevo)
-    db.session.commit()
-    return redirect('/')
-
-@app.route('/aplicaciones')
+# PÁGINAS ADICIONALES
+@app.route("/aplicaciones")
 def aplicaciones():
-    return render_template('aplicaciones.html')
+    return render_template("aplicaciones.html")
 
-@app.route('/reflexion')
+@app.route("/reflexion")
 def reflexion():
-    return render_template('reflexion.html')
+    return render_template("reflexion.html")
 
-@app.route('/codigo')
+@app.route("/codigo")
 def codigo():
-    return render_template('codigo.html')
+    return render_template("codigo.html")
 
-if __name__ == '__main__':
+# INICIAR LA APLICACIÓN
+if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Puerto dinámico para Render
+    app.run(host="0.0.0.0", port=port)        # Aceptar conexiones externas
