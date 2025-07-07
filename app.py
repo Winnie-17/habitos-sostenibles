@@ -84,8 +84,6 @@ def codigo():
 
 # INICIAR LA APLICACIÓN
 if __name__ == "__main__":
-    if os.path.exists("habitos.db"):
-        os.remove("habitos.db")
     with app.app_context():
         db.create_all()
     port = int(os.environ.get("PORT", 5000))  # Puerto dinámico para Render
