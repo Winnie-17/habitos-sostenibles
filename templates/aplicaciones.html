@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aplicación</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0" />
 </head>
 <body>
   <main class="fade-in">
-    <h2>Aplicación</h2>
+    <h2>Aplicaciones del sistema en el mundo real</h2>
+    <p>
+      A continuación se presentan dos ejemplos reales donde se promueve el seguimiento de hábitos sostenibles en contextos educativos, tanto en el entorno nacional como internacional.
+    </p>
+
     <section class="fade-in">
-      <h3>🇵🇪 Escuelas Ecoeficientes (MINEDU)</h3>
-      <img src="{{ url_for('static', filename='imagen(peru).png') }}" class="imagen-redonda">
-      <p>Descripción del caso MINEDU.</p>
+      <h3>🇵🇪 Escuelas Ecoeficientes (Perú)</h3>
+      <img src="{{ url_for('static', filename='imagen_peru.png') }}" class="imagen-redonda" alt="Escuelas Ecoeficientes" />
+      <p>
+        El Ministerio de Educación del Perú promueve las "Escuelas Ecoeficientes", una iniciativa que busca incorporar hábitos sostenibles en las instituciones educativas públicas. Se incluyen acciones como el uso responsable del agua, el reciclaje de residuos y el ahorro de energía.
+      </p>
+
       <h3>🇩🇪 Escuelas Verdes (Alemania)</h3>
-      <img src="{{ url_for('static', filename='imagen(alemania).png') }}" class="imagen-redonda">
-      <p>Descripción del caso en Alemania.</p>
+      <img src="{{ url_for('static', filename='imagen_alemania.png') }}" class="imagen-redonda" alt="Green Schools Germany" />
+      <p>
+        En Alemania, las "Green Schools" integran la sostenibilidad en el currículo, infraestructura y cultura institucional. Estas escuelas no solo enseñan sobre sostenibilidad, sino que también realizan seguimientos prácticos y participativos con sus estudiantes.
+      </p>
     </section>
+
     <nav class="menu">
-        <a href="{{ url_for('index') }}">Inicio</a>
-        <a href="{{ url_for('reflexion') }}">Reflexión</a>
-        <a href="{{ url_for('codigo') }}">Código</a>
+      <a href="/index">Inicio</a>
+      <a href="/reflexion">Reflexión</a>
+      <a href="/codigo">Código</a>
     </nav>
   </main>
 </body>

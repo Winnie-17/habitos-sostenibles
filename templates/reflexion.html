@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reflexión</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0" />
 </head>
 <body>
   <main class="fade-in">
-    <h2>Reflexión</h2>
+    <h2>Reflexión sobre el desarrollo del proyecto</h2>
+    <p>
+      Este proyecto ha permitido aplicar conocimientos técnicos y al mismo tiempo reflexionar sobre el impacto de los hábitos sostenibles. A continuación se presentan las herramientas utilizadas y su propósito en el desarrollo de esta aplicación:
+    </p>
+
     <section class="fade-in">
-      <img src="{{ url_for('static', filename='herramientas.png') }}" class="imagen-redonda">
-      <p>Se emplearon Python, Flask, HTML/CSS, SQLite y SQLAlchemy. Render se usó para el despliegue.</p>
+      <img src="{{ url_for('static', filename='herramientas.png') }}" class="imagen-redonda" alt="Herramientas utilizadas" />
+      <ul>
+        <li><strong>Python y Flask:</strong> base del sistema para crear el servidor web.</li>
+        <li><strong>HTML y CSS:</strong> para estructurar y diseñar visualmente la interfaz.</li>
+        <li><strong>SQLite y SQLAlchemy:</strong> para almacenar los datos de hábitos y registros.</li>
+        <li><strong>Render:</strong> plataforma gratuita usada para desplegar el sistema online.</li>
+        <li><strong>Git y GitHub:</strong> para controlar versiones y publicar actualizaciones.</li>
+      </ul>
+      <p>
+        Además de las herramientas técnicas, la reflexión permitió comprender cómo pequeños hábitos pueden gestionarse digitalmente y cómo una herramienta sencilla puede fomentar la conciencia ambiental entre estudiantes.
+      </p>
     </section>
+
     <nav class="menu">
-        <a href="{{ url_for('index') }}">Inicio</a>
-        <a href="{{ url_for('aplicaciones') }}">Aplicación</a>
-        <a href="{{ url_for('codigo') }}">Código</a>
+      <a href="/index">Inicio</a>
+      <a href="/aplicaciones">Aplicación</a>
+      <a href="/codigo">Código</a>
     </nav>
   </main>
 </body>

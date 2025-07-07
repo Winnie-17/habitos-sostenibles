@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hábitos sostenibles</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0">
+
+  <!-- Google Fonts y estilo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0" />
 </head>
+
 <body>
   <header>
     <h1 class="titulo">Hábitos sostenibles</h1>
-    <p class="descripcion">Sistema de seguimiento de hábitos sostenibles personalizados.</p>
+    <p class="descripcion">
+      Bienvenido al sistema de seguimiento de hábitos sostenibles. Aquí podrás crear una lista personalizada de hábitos que desees practicar en tu día a día, marcarlos según tu cumplimiento y llevar un historial visual de tu progreso.
+    </p>
+    <p class="descripcion">
+      Este sistema está diseñado para ser usado de manera individual. Cada usuario que ingrese con su nombre o alias podrá ver y gestionar únicamente sus propios hábitos.
+    </p>
   </header>
 
   <main class="fade-in">
-    <!-- Añadir hábito -->
+    <!-- Añadir nuevo hábito -->
     <section>
+      <h2>1. Crear hábitos personalizados</h2>
+      <p>Escribe a continuación los hábitos sostenibles que deseas incorporar. Ejemplos: “Reciclar”, “Apagar luces innecesarias”, “Llevar botella reutilizable”.</p>
       <form method="POST" action="/agregar">
-        <input type="text" name="nuevo_habito" placeholder="Nuevo hábito..." required>
+        <input type="text" name="nuevo_habito" placeholder="Ej. Apagar luces innecesarias" required />
         <button type="submit" class="btn">Añadir hábito</button>
       </form>
     </section>
 
-    <!-- Lista de hábitos y registrar -->
+    <!-- Marcar hábitos y registrar -->
     <section>
+      <h2>2. Registrar tus hábitos</h2>
+      <p>Marca los hábitos que cumpliste hoy y presiona “Registrar”. El sistema guardará un historial por fecha. Puedes realizar un registro cada día.</p>
       <form method="POST" action="/registrar">
         {% for habito in lista %}
         <div class="check">
@@ -35,9 +49,10 @@
       </form>
     </section>
 
-    <!-- Botones de eliminar -->
+    <!-- Eliminar hábitos -->
     <section>
-      <h3>Eliminar hábitos</h3>
+      <h2>3. Eliminar hábitos (si es necesario)</h2>
+      <p>Si deseas quitar un hábito de tu lista, haz clic en el ícono de la papelera correspondiente:</p>
       {% for habito in lista %}
       <form method="POST" action="/eliminar/{{ habito.id }}" style="display:inline-block; margin: 5px;">
         <span>{{ habito.nombre }}</span>
@@ -46,18 +61,21 @@
       {% endfor %}
     </section>
 
-    <!-- Historial -->
+    <!-- Historial de registros -->
     <section>
-      <h2>Historial</h2>
+      <h2>4. Historial de hábitos registrados</h2>
+      <p>Aquí verás los hábitos que has registrado cada día. ✅ indica que fue cumplido, ❌ que no.</p>
       <table>
-        <thead><tr><th>Fecha</th><th>Hábitos</th></tr></thead>
+        <thead>
+          <tr><th>Fecha</th><th>Hábitos</th></tr>
+        </thead>
         <tbody>
           {% for r in registros %}
           <tr>
             <td>{{ r.fecha }}</td>
             <td>
               {% for n,v in r.datos.items() %}
-              {{ n }}: {{ '✅' if v else '❌' }}<br>
+                {{ n }}: {{ '✅' if v else '❌' }}<br />
               {% endfor %}
             </td>
           </tr>
@@ -66,10 +84,13 @@
       </table>
     </section>
 
+    <!-- Navegación -->
     <nav class="menu">
-      <a href="{{ url_for('aplicaciones') }}">Aplicación</a>
-      <a href="{{ url_for('reflexion') }}">Reflexión</a>
-      <a href="{{ url_for('codigo') }}">Código</a>
+      <a href="/">Inicio</a>
+      <a href="/aplicaciones">Aplicación</a>
+      <a href="/reflexion">Reflexión</a>
+      <a href="/codigo">Código</a>
+      <a href="/logout" class="btn">Salir</a>
     </nav>
   </main>
 </body>
