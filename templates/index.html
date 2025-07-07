@@ -20,15 +20,16 @@
       <form method="POST" action="/registrar">
         {% for habito in lista %}
         <div class="check">
-          <input type="checkbox" name="habito_{{ habito.id }}" id="habito_{{ habito.id }}">
-          <label for="habito_{{ habito.id }}">{{ habito.nombre }}</label>
-          <form method="POST" action="/eliminar/{{ habito.id }}">
-            <button type="submit">🗑️</button>
-          </form>
+            <input type="checkbox" name="habito_{{ habito.id }}" id="habito_{{ habito.id }}">
+            <label for="habito_{{ habito.id }}">{{ habito.nombre }}</label>
+            <button type="submit" form="deleteForm{{ habito.id }}">🗑️</button>
         </div>
+
+        <form id="deleteForm{{ habito.id }}" method="POST" action="/eliminar/{{ habito.id }}"></form>
         {% endfor %}
         <button type="submit" class="btn">Registrar</button>
       </form>
+
     </section>
     <section>
       <h2>Historial</h2>
